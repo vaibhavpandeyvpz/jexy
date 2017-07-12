@@ -29,12 +29,12 @@ import com.vaibhavpandey.jexy.ShellProcess;
 class EntryPoint {
     
     static int main(String[] args) {
-        // To run a command and just get the **exit code**
+        // E.g. 3, To run a command and just get the **exit code**
         ShellProcess process = new ShellProcess("sh", "-c", "echo 'something' > somefile.txt");
         if (0 == process.execute()) {
             System.out.println("File save successfully.");
         }
-        // To run a command and retrieve the output
+        // E.g. 2, To run a command and retrieve the output
         ShellProcess process = new ShellProcess("sh", "-c", "cat somefile.txt");
         ShellResult result = process.execute(true, true);
         if (0 == result.getExitCode()) {
@@ -43,14 +43,13 @@ class EntryPoint {
             // Error output from process
             List<String> STDERR = result.getStdErr();
         }
-        // To run multiple commands in one process
+        // E.g. 3, To run multiple commands in one process
         ShellProcess process = new ShellProcess("sh");
         // COMMANDS >>>
         process.add("chmod", "644", "somefile.txt");
         process.add("chown", "-R", "user:group", "/var/www");
-        ShellResult result = process.execute(true, true);
         // <<< COMMANDS
-        if (0 == result.getExitCode()) {
+        if (0 == process.execute()) {
             // It all ran interactively in one process
         }
     }
