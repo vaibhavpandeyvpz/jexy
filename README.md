@@ -48,6 +48,7 @@ class EntryPoint {
         // COMMANDS >>>
         process.add("chmod", "644", "somefile.txt");
         process.add("chown", "-R", "user:group", "/var/www");
+        process.add("exit"); // You must exit an interactive process manually
         // <<< COMMANDS
         if (0 == process.execute()) {
             // It all ran interactively in one process
