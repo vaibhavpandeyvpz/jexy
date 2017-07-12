@@ -18,7 +18,7 @@ allprojects {
 }
 
 dependencies {
-    compile 'com.github.vaibhavpandeyvpz:jexy:1.0-SNAPSHOT'
+    compile 'com.github.vaibhavpandeyvpz:jexy:master-SNAPSHOT'
 }
 ```
 
