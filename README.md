@@ -29,7 +29,7 @@ import com.vaibhavpandey.jexy.ShellProcess;
 class EntryPoint {
     
     static int main(String[] args) {
-        // E.g. 3, To run a command and just get the **exit code**
+        // E.g. 1, To run a command and just get the **exit code**
         ShellProcess process = new ShellProcess("sh", "-c", "echo 'something' > somefile.txt");
         if (0 == process.execute()) {
             System.out.println("File save successfully.");
