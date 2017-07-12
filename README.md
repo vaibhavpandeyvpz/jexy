@@ -1,6 +1,6 @@
 # Jexy
-Jexy is a [Java](https://www.java.com/en/) library to make executing external process (and optionally read
-**error**/**output**) streams easily a breeze with a very easy to use API.
+Jexy is a [Java](https://www.java.com/en/) library to make executing external processes (and optionally read
+**error**/**output** streams) a breeze with a very easy to use API.
 
 [![Build status](https://img.shields.io/travis/vaibhavpandeyvpz/jexy.svg?style=flat-square)](https://travis-ci.org/vaibhavpandeyvpz/jexy)
 [![Code Coverage](https://img.shields.io/codecov/c/github/vaibhavpandeyvpz/jexy.svg?style=flat-square)](https://codecov.io/gh/vaibhavpandeyvpz/jexy)
