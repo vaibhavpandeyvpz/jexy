@@ -1,5 +1,7 @@
-package com.vaibhavpandey.jexy;
+package com.github.vaibhavpandeyvpz.jexy.tests;
 
+import com.github.vaibhavpandeyvpz.jexy.ExecutionResult;
+import com.github.vaibhavpandeyvpz.jexy.ShellProcess;
 import org.junit.Test;
 
 import java.io.File;

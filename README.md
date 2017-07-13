@@ -24,7 +24,7 @@ dependencies {
 
 # Usage
 ```java
-import com.vaibhavpandey.jexy.ShellProcess;
+import com.github.vaibhavpandeyvpz.jexy.ShellProcess;
 
 class EntryPoint {
     
@@ -34,6 +34,7 @@ class EntryPoint {
         if (0 == process.execute()) {
             System.out.println("File save successfully.");
         }
+
         // E.g. 2, To run a command and retrieve the output
         ShellProcess process = new ShellProcess("sh", "-c", "cat somefile.txt");
         ShellResult result = process.execute(true, true);
@@ -43,6 +44,7 @@ class EntryPoint {
             // Error output from process
             List<String> STDERR = result.getStdErr();
         }
+
         // E.g. 3, To run multiple commands in one process
         ShellProcess process = new ShellProcess("sh");
         // COMMANDS >>>

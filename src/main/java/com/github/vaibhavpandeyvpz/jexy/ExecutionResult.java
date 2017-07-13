@@ -1,4 +1,4 @@
-package com.vaibhavpandey.jexy;
+package com.github.vaibhavpandeyvpz.jexy;
 
 import java.util.List;
 
