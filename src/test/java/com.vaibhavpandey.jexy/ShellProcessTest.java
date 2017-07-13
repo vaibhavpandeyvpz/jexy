@@ -50,7 +50,7 @@ public class ShellProcessTest {
     public void testStdOutAndErr() {
         ShellProcess process = new ShellProcess("sh");
         process.add("echo", "VPZ");
-        process.add(new String[] { "echo", "ZPV", ">&2" });
+        process.add("echo", new String[] { "ZPV", ">&2" });
         ExecutionResult result = process.execute(true, true);
         assertEquals(0, result.getExitCode());
         assertNotNull(result.getStdOut());
@@ -70,7 +70,7 @@ public class ShellProcessTest {
 
     @Test
     public void testWorkingDirectoryCustom() {
-        ShellProcess process = new ShellProcess(new String[] { "sh", "-c", "pwd" }, new File("/etc"));
+        ShellProcess process = new ShellProcess("sh", new String[] { "-c", "pwd" }, new File("/etc"));
         ExecutionResult result = process.execute(true);
         assertEquals(0, result.getExitCode());
         assertNotNull(result.getStdOut());

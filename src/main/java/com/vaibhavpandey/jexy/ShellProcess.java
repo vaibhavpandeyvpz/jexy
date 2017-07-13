@@ -1,33 +1,40 @@
 package com.vaibhavpandey.jexy;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ShellProcess {
 
     public static final int EXIT_CODE_START_FAILED = 126;
 
-    private final String[] mCmdline;
+    private final String[] mArguments;
 
-    private List<String[]> mCommands;
+    private final String mCommand;
 
-    private File mWorkingDirectory;
+    private List<String> mCommands;
 
-    public ShellProcess(String... cmdline) {
-        this(cmdline, null);
+    private final File mWorkingDirectory;
+
+    public ShellProcess(String command, String... args) {
+        this(command, args, null);
     }
 
-    public ShellProcess(String[] cmdline, File cwd) {
-        mCmdline = cmdline;
+    public ShellProcess(String command, String[] args, File cwd) {
+        mCommand = command;
+        mArguments = args;
         mWorkingDirectory = cwd;
     }
 
-    public void add(String... command) {
+    public void add(String command, String... args) {
         if (null == mCommands) {
             mCommands = new ArrayList<>();
         }
-        mCommands.add(command);
+        StringBuilder cmdline = new StringBuilder(command);
+        if (null != args) {
+            for (String arg : args)
+                cmdline.append(' ').append(arg);
+        }
+        mCommands.add(cmdline.toString());
     }
 
     public int execute() {
@@ -42,7 +49,15 @@ public class ShellProcess {
         int code = EXIT_CODE_START_FAILED;
         Process process;
         try {
-            ProcessBuilder builder = new ProcessBuilder(mCmdline);
+            ProcessBuilder builder;
+            if (null != mArguments) {
+                List<String> cmdline = new ArrayList<>();
+                cmdline.add(mCommand);
+                cmdline.addAll(Arrays.asList(mArguments));
+                builder = new ProcessBuilder(cmdline);
+            } else {
+                builder = new ProcessBuilder(mCommand);
+            }
             if (null != mWorkingDirectory) {
                 builder.directory(mWorkingDirectory);
             }
@@ -55,12 +70,8 @@ public class ShellProcess {
         try {
             if (null != mCommands) {
                 writer = new OutputStreamWriter(process.getOutputStream());
-                for (String[] command : mCommands) {
-                    writer.write(command[0]);
-                    if (command.length > 1) {
-                        for (int i = 1; i < command.length; i++)
-                            writer.write(' ' + command[i]);
-                    }
+                for (String command : mCommands) {
+                    writer.write(command);
                     writer.write("\n");
                     writer.flush();
                 }
